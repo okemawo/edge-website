@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Edge AI Lab | University Name</title>
+    <title>Mobile Edge AI Lab | University Name </title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -15,6 +15,7 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        /* Simple animation for section fade-in on scroll */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -25,47 +26,35 @@
             transform: translateY(0);
         }
     </style>
-    
-    <script>
-        // Set up Tailwind to use the 'dark' class for dark mode
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
 </head>
-<body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
+<body class="bg-slate-100 text-slate-800 transition-colors duration-300">
 
-    <header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800">
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div>
                 <a href="#">
-                    <img src="./image copy.png" alt="Mobile Edge AI Lab Logo" class="h-12 w-auto dark:invert">
+                    <img src="./image copy.png" alt="Mobile Edge AI Lab Logo" class="h-12 w-auto">
                 </a>
             </div>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</a>
-                <a href="#news" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">News</a>
-                <a href="#research" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Research</a>
-                <a href="#publications" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Publications</a>
-                <a href="#people" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">People</a>
-                <a href="#contact" class="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2 rounded-md hover:bg-blue-600 dark:hover:bg-blue-400 transition-all shadow-sm">Contact Us</a>
-                
-                <button id="theme-toggle" class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg p-2">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                </button>
+                <a href="#home" class="text-slate-600 hover:text-blue-600 transition-colors">Home</a>
+                <a href="#news" class="text-slate-600 hover:text-blue-600 transition-colors">News</a>
+                <a href="#research" class="text-slate-600 hover:text-blue-600 transition-colors">Research</a>
+                <a href="#publications" class="text-slate-600 hover:text-blue-600 transition-colors">Publications</a>
+                <a href="#people" class="text-slate-600 hover:text-blue-600 transition-colors">People</a>
+                <a href="#contact" class="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all shadow-sm">Contact Us</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-slate-500 dark:text-slate-400">
+            <button id="mobile-menu-button" class="md:hidden text-slate-500">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2 dark:bg-slate-900">
-            <a href="#home" class="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</a>
-            <a href="#news" class="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">News</a>
-            <a href="#research" class="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Research</a>
-            <a href="#publications" class="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Publications</a>
-            <a href="#people" class="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">People</a>
-            <a href="#contact" class="block bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2 rounded-md hover:bg-blue-600 dark:hover:bg-blue-400 transition-all">Contact Us</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#home" class="block text-slate-600 hover:text-blue-600 transition-colors">Home</a>
+            <a href="#news" class="block text-slate-600 hover:text-blue-600 transition-colors">News</a>
+            <a href="#research" class="block text-slate-600 hover:text-blue-600 transition-colors">Research</a>
+            <a href="#publications" class="block text-slate-600 hover:text-blue-600 transition-colors">Publications</a>
+            <a href="#people" class="block text-slate-600 hover:text-blue-600 transition-colors">People</a>
+            <a href="#contact" class="block bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all">Contact Us</a>
         </div>
     </header>
 
@@ -73,27 +62,28 @@
 
         <section id="home" class="text-center pt-0 pb-0 fade-in-section">
             <div id="image-carousel" class="relative w-full max-w-5xl mx-auto shadow-lg" data-carousel="slide">
-                <div class="relative overflow-hidden rounded-lg lg:h-[70vh]">
-                     <div class="carousel-item duration-700 ease-in-out">
-                         <img src="./image.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
-                     </div>
-                     <div class="carousel-item duration-700 ease-in-out">
-                         <img src="./group_pic.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 2">
-                     </div>
-                     <div class="carousel-item duration-700 ease-in-out">
-                         <img src="./ggroup_pic2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 3">
-                     </div>
+                <div class="relative  overflow-hidden rounded-lg lg:h-[70vh]">
+                    <div class="carousel-item duration-700 ease-in-out">
+                        <img src="./image.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
+                    </div>
+                    <div class="carousel-item duration-700 ease-in-out">
+                        <img src="./group_pic.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
+                    </div>
+                    <div class="carousel-item duration-700 ease-in-out">
+                        <img src="./ggroup_pic2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
+                    </div>
                 </div>
-                <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse" id="carousel-indicators"></div>
+                <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse" id="carousel-indicators">
+                    </div>
                 <button type="button" id="carousel-prev" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70">
-                        <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg>
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white">
+                        <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg>
                         <span class="sr-only">Previous</span>
                     </span>
                 </button>
                 <button type="button" id="carousel-next" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70">
-                        <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg>
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white">
+                        <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg>
                         <span class="sr-only">Next</span>
                     </span>
                 </button>
@@ -102,62 +92,61 @@
 
         <section id="news" class="py-16 fade-in-section">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">News & Updates</h2>
-                <p class="text-slate-600 dark:text-slate-400 mt-2">Latest announcements and achievements from our lab.</p>
+                <h2 class="text-3xl font-bold text-slate-900">News & Updates</h2>
+                <p class="text-slate-600 mt-2">Latest announcements and achievements from our lab.</p>
             </div>
 
             <div class="max-w-4xl mx-auto space-y-12">
                 <div class="news-item md:grid md:grid-cols-3 gap-8 items-center">
                     <img src="https://placehold.co/600x400/BFDBFE/1E3A8A?text=News+Image" alt="News item thumbnail" class="rounded-lg shadow-md md:col-span-1 mb-4 md:mb-0">
                     <div class="md:col-span-2">
-                        <p class="text-slate-500 dark:text-slate-400 text-sm">September 19, 2025</p>
-                        <h3 class="font-semibold text-xl text-slate-800 dark:text-slate-100 mt-1">In a Recent publication, We Uncover Critical Insights into Motorcycle Safety in Africa</h3>
-                        <p class="text-slate-600 dark:text-slate-300 mt-2">Our latest paper, "Seeing the Threat: How Drivers React to Motorcycles in African Traffic," has been accepted by the prestigious IEEE Intelligent Transportation System Society Conference. This pioneering study sheds light on crucial driver behaviors, offering vital data to improve road safety and policy in the region.</p>
+                        <p class="text-slate-500 text-sm">September 19, 2025</p>
+                        <h3 class="font-semibold text-xl text-slate-800 mt-1">In a Recent publication, We Uncover Critical Insights into Motorcycle Safety in Africa</h3>
+                        <p class="text-slate-600 mt-2">Our latest paper, "Seeing the Threat: How Drivers React to Motorcycles in African Traffic," has been accepted by the prestigious IEEE Intelligent Transportation System Society Conference. This pioneering study sheds light on crucial driver behaviors, offering vital data to improve road safety and policy in the region.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="research" class="py-16 fade-in-section bg-white dark:bg-slate-800 rounded-lg shadow-md">
+        <section id="research" class="py-16 fade-in-section bg-white rounded-lg shadow-md">
             <div class="text-center mb-12 px-6">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Our Research</h2>
-                <p class="text-slate-600 dark:text-slate-400 mt-2">Our research interests span Generative AI, Business Optimization, Entrepreneurial Ecosystems, Edge Computing, Mobility Analytics, and Intelligent Transportation Systems.</p>
+                <h2 class="text-3xl font-bold text-slate-900">Our Research</h2>
+                <p class="text-slate-600 mt-2">Our research interests span Generative AI, Business Optimization, Entrepreneurial Ecosystems, Edge Computing, Mobility Analytics, and Intelligent Transportation Systems. </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
-                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-slate-50 dark:bg-slate-700">
+                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
                     <img src="./other_assets/digital_twins.png" alt="Project 1" class="rounded-md mb-4 w-full h-48 object-cover">
-                    <h3 class="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">Pioneering Digital Twins and Mobility</h3>
-                    <p class="text-slate-600 dark:text-slate-300">Adapting traffic simulation for Sub-Saharan African cities, integrating Informal Public Transport (IPT) dynamics to optimize transit efficiency and urban mobility planning.</p>
+                    <h3 class="text-xl font-semibold mb-2 text-slate-900">Pioneering Digital Twins and Mobility </h3>
+                    <p class="text-slate-600">Adapting traffic simulation for Sub-Saharan African cities, integrating Informal Public Transport (IPT) dynamics to optimize transit efficiency and urban mobility planning.</p>
                 </div>
-                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-slate-50 dark:bg-slate-700">
+                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
                     <img src="./other_assets/federated.png" alt="Project 2" class="rounded-md mb-4 w-full h-48 object-cover">
-                    <h3 class="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">Federated Computing and Graph Theory</h3>
-                    <p class="text-slate-600 dark:text-slate-300">Applying graph theory principles to build scalable and robust federated computing solutions. Exploring data privacy while training powerful AI models.</p>
+                    <h3 class="text-xl font-semibold mb-2 text-slate-900">Federated Computing and Graph Theory</h3>
+                    <p class="text-slate-600"> <p class="text-slate-600">Applying graph theory principles to build scalable and robust federated computing solutions. Exploring data privacy while training powerful AI models.</p> </p>
                 </div>
-                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-slate-50 dark:bg-slate-700">
-                    <img src="./other_assets/AI.png" alt="Project 3" class="rounded-md mb-4 w-full h-48 object-cover">
-                    <h3 class="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">Gen AI and Applications</h3>
-                    <p class="text-slate-600 dark:text-slate-300">This project explores the transformative capabilities of Generative AI across diverse domains, from agentic deployment patterns to complex problem-solving.</p>
-                </div>
+                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
+                    <img src="./other_assets/AI.png" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <h3 class="text-xl font-semibold mb-2 text-slate-900">Gen AI and Applications</h3>
+                    <p class="text-slate-600">This project explores the transformative capabilities of Generative AI across diverse domains, from agentic deployment patterns to complex problem-solving.</p>                </div>
             </div>
         </section>
         
         <section id="publications" class="py-16 fade-in-section">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Publications</h2>
-                <p class="text-slate-600 dark:text-slate-400 mt-2">Our latest contributions.</p>
+                <h2 class="text-3xl font-bold text-slate-900">Publications</h2>
+                <p class="text-slate-600 mt-2">Our latest contributions.</p>
             </div>
 
             <div class="space-y-6 max-w-4xl mx-auto">
-                <div class="publication-item bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
-                    <p class="text-slate-500 dark:text-slate-400 text-sm">2025</p>
-                    <h3 class="font-semibold text-lg text-slate-800 dark:text-slate-100">Seeing the Threat: How Drivers React to Motorcycles in African Traffic</h3>
-                    <p class="text-slate-600 dark:text-slate-300 mt-1">E. Brian, B. Joao</p>
-                    <p class="text-slate-500 dark:text-slate-400 italic mt-1">IEEE International Conference on Vehicular Electronics and Safety (ICVES)</p>
+                <div class="publication-item bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <p class="text-slate-500 text-sm">2025</p>
+                    <h3 class="font-semibold text-lg text-slate-800">Seeing the Threat: How Drivers React to Motocycles in African Traffic</h3>
+                    <p class="text-slate-600 mt-1">E. Brian, B. Joao <span class="font-semibold"></span></p>
+                    <p class="text-slate-500 italic mt-1">IEEE International Conference on Vehicular Electronics and Safety (ICVES)</p>
                     <div class="mt-2 space-x-4">
-                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">DOI</a>
-                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">PDF</a>
+                        <a href="#" class="text-blue-600 hover:underline">DOI</a>
+                        <a href="#" class="text-blue-600 hover:underline">PDF</a>
                     </div>
                 </div>
             </div>
@@ -165,73 +154,172 @@
 
         <section id="people" class="py-16 fade-in-section">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Our Team</h2>
-                <p class="text-slate-600 dark:text-slate-400 mt-2">The researchers behind the science.</p>
+                <h2 class="text-3xl font-bold text-slate-900">Our Team</h2>
+                <p class="text-slate-600 mt-2">The researchers behind the science.</p>
             </div>
 
-            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-900 dark:text-slate-100">Principal Investigator</h3>
+            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-900">Principal Investigator</h3>
             <div class="flex justify-center mb-12">
-                <div class="team-member-card text-center w-full max-w-sm bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/joao.png" alt="PI Name" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-white dark:ring-slate-700">
-                    <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100">Professor Joao Barros</h4>
-                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">Associate Director & Research Professor</p>
+                <div class="team-member-card text-center w-full max-w-sm bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="./members_assets/joao.png" alt="PI Name" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="text-xl font-bold text-slate-900">Professor Joao Barros</h4>
+                    <p class="text-slate-600 mt-2 text-sm">Associate Director & Research Professor</p>
                 </div>
             </div>
 
-            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-900 dark:text-slate-100">Current Members</h3>
+            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-900">Current Members</h3>
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/aline.png" alt="Aline Ingabire" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white dark:ring-slate-700">
-                    <h4 class="font-semibold text-slate-800 dark:text-slate-100">Aline Ingabire</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm">Postdoctoral Researcher @ CMU Africa</p>
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="./members_assets/aline.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Aline Ingabire</h4>
+                    <p class="text-slate-500 text-sm">Postdoctoral Researcher @ CMU Africa</p>
                 </div>
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Karim Banawan</h4>
+                    <p class="text-slate-500 text-sm">Associate Teaching professor @ American University in Cairo</p>
+                </div>
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="./members_assets/roy.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Roy Esibe</h4>
+                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
                 </div>
 
-            <h3 class="text-2xl font-semibold mt-12 mb-6 text-center text-slate-900 dark:text-slate-100">Alumni</h3>
-            <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
-                <ul class="list-disc list-inside space-y-2 text-slate-700 dark:text-slate-300">
-                    <li><strong>Vital</strong> (Research Associate) - ...</li>
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="./members_assets/mohammed.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Mohammed Aliyu</h4>
+                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="./members_assets/Agnes.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Agnes Nakalembe</h4>
+                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Okemawo Obadofin</h4>
+                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Brian Kipkirui</h4>
+                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                </div>
+                
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="./members_assets/ebiyau.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Brian Ebiyau</h4>
+                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="./members_assets/scovia.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Scovia Achan</h4>
+                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Julius Wasajja</h4>
+                    <p class="text-slate-500 text-sm">Research Assistant @ CMU Africa</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Thomas Seleshi</h4>
+                    <p class="text-slate-500 text-sm">Research Assistant @ CMU Africa</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
+                    <h4 class="font-semibold text-slate-800">Marlyn Mayienga</h4>
+                    <p class="text-slate-500 text-sm">Research Assistant @ CMU Africa</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-12 mb-6 text-center text-slate-900">Alumni</h3>
+            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <li><strong>Vital</strong> (Research Associate) - Vital  .......</li>
+                    <li><strong>David</strong> (Research Associate) - David .......</li>
+                    <li><strong>Galane</strong> (Research Associate) - Galane .......</li>
+                    <li><strong>Ernest</strong> (Research Associate) - Ernest .......</li>
+                    <li><strong>Angelique</strong> (Research Associate) - Angelique .......</li>
                 </ul>
             </div>
         </section>
 
-        <section id="contact" class="py-16 bg-white dark:bg-slate-800 rounded-lg shadow-md fade-in-section border border-slate-200 dark:border-slate-700">
+        <section id="contact" class="py-16 bg-white rounded-lg shadow-md fade-in-section border border-slate-200">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Get In Touch</h2>
-                <p class="text-slate-600 dark:text-slate-400 mt-2">We welcome collaborations and inquiries.</p>
+                <h2 class="text-3xl font-bold text-slate-900">Get In Touch</h2>
+                <p class="text-slate-600 mt-2">We welcome collaborations and inquiries from prospective partners.</p>
             </div>
             
             <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-start px-4">
+                
                 <div class="text-center md:text-left">
-                    <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4">Our Location 🗺️</h3>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4">Our Location 🗺️</h3>
+                    
                     <div class="mb-6 shadow-lg rounded-lg overflow-hidden">
-                        <iframe src="https://maps.google.com/maps?q=-1.9353531269396427,30.158007148105302&z=15&output=embed" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full grayscale dark:invert"></iframe>
+                        <iframe 
+                            src="https://maps.google.com/maps?q=-1.9353531269396427,30.158007148105302&z=15&output=embed" 
+                            height="250" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full">
+                        </iframe>
                     </div>
+        
                     <div>
-                        <p class="text-slate-700 dark:text-slate-300"><strong>Carnegie Mellon University Africa</strong><br>Kigali Innovation City, Bumbogo<br>Kigali, Rwanda</p>
+                        <p class="text-slate-700">
+                            <strong>Carnegie Mellon University Africa</strong><br>
+                            Kigali Innovation City, Bumbogo<br>
+                            Kigali, Rwanda
+                        </p>
+                        <p class="text-slate-500 mt-4 text-sm">
+                            <svg class="inline-block w-4 h-4 mr-1 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <strong>Timezone:</strong> Central Africa Time (CAT), UTC+2
+                        </p>
                     </div>
                 </div>
+        
                 <div class="text-center md:text-left md:pl-8">
-                    <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4">Email</h3>
-                    <p class="text-slate-700 dark:text-slate-300"><strong>For general inquiries:</strong><br><a href="mailto:jbarros@andrew.cmu.edu" class="text-blue-600 dark:text-blue-400 hover:underline">jbarros@andrew.cmu.edu</a></p>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4">Email</h3>
+                    <p class="text-slate-700">
+                        <strong>For general inquiries:</strong><br>
+                        <a href="mailto:jbarros@andrew.cmu.edu" class="text-blue-600 hover:underline">jbarros@andrew.cmu.edu</a>
+                    </p>
+                    <p class="text-slate-700 mt-4">
+                        <strong>Principal Investigator:</strong><br>
+                        <a href="mailto:jbarros@andrew.cmu.edu" class="text-blue-600 hover:underline">Joao Barros</a>
+                    </p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <section id="partners" class="py-16 bg-slate-50 dark:bg-slate-900">
+    <section id="partners" class="py-16 bg-slate-50">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Our Partners & Collaborators</h2>
-            <p class="text-slate-600 dark:text-slate-400 mt-2 mb-12">We are proud to work with leading organizations.</p>
+            <h2 class="text-3xl font-bold text-slate-900">Our Partners & Collaborators</h2>
+            <p class="text-slate-600 mt-2 mb-12">We are proud to work with leading organizations in both industry and academia.</p>
             
             <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-                <img src="./other_assets/vw.png" alt="Volkswagen Logo" class="h-12 lg:h-20 grayscale dark:grayscale-0 dark:invert hover:grayscale-0 transition-all duration-300 hover:scale-105">
-                </div>
+                <img src="./other_assets/vw.png" alt="Volkswagen Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
+                <img src="./other_assets/rura.png" alt="RURA Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
+                <img src="./other_assets/yego.png" alt="YEGO Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
+                <img src="./other_assets/AUC.png" alt="American University in Cairo Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
+                <img src="./other_assets/UxA.png" alt="University of Amsterdam Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
+            </div>
         </div>
     </section>
 
-    <footer class="bg-slate-800 dark:bg-black mt-16 border-t border-slate-700 dark:border-slate-800">
+    <footer class="bg-slate-800 text-white mt-16 border-t border-slate-700">
         <div class="container mx-auto px-6 py-4 text-center text-slate-400 text-sm">
             <p>© 2025 Mobile Edge AI Lab. All Rights Reserved.</p>
         </div>
@@ -239,34 +327,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-            const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-            function setTheme(isDark) {
-                if (isDark) {
-                    document.documentElement.classList.add('dark');
-                    themeToggleLightIcon.classList.add('hidden');
-                    themeToggleDarkIcon.classList.remove('hidden');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    themeToggleDarkIcon.classList.add('hidden');
-                    themeToggleLightIcon.classList.remove('hidden');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            }
-            
-            const isSavedDark = localStorage.getItem('color-theme') === 'dark';
-            const isSystemDark = !('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            setTheme(isSavedDark || isSystemDark);
-
-            themeToggleBtn.addEventListener('click', function() {
-                setTheme(!document.documentElement.classList.contains('dark'));
-            });
-
-
+            // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
@@ -274,6 +335,119 @@
                     mobileMenu.classList.toggle('hidden');
                 });
             }
+
+            // Fade-in sections on scroll
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Active nav link on scroll
+            const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+            const contentSections = document.querySelectorAll('main section, #partners'); // Added partners section to observer
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                contentSections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 70) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(a => {
+                    a.classList.remove('font-semibold', 'text-blue-600');
+                    if (a.href.includes('#' + current)) {
+                        a.classList.add('font-semibold', 'text-blue-600');
+                    }
+                });
+            });
+
+            // --- START: Carousel Logic ---
+            const carousel = document.getElementById('image-carousel');
+            if (carousel) {
+                const items = carousel.querySelectorAll('.carousel-item');
+                const indicatorsContainer = document.getElementById('carousel-indicators');
+                const prevButton = document.getElementById('carousel-prev');
+                const nextButton = document.getElementById('carousel-next');
+                let currentItem = 0;
+                let slideInterval;
+
+                // Function to show a specific item
+                function showItem(index) {
+                    items.forEach((item, i) => {
+                        item.classList.add('hidden');
+                    });
+                    items[index].classList.remove('hidden');
+
+                    // Update indicators
+                    const dots = indicatorsContainer.querySelectorAll('button');
+                    dots.forEach(dot => {
+                        dot.classList.remove('bg-white');
+                        dot.classList.add('bg-white/50');
+                        dot.setAttribute('aria-current', 'false');
+                    });
+                    dots[index].classList.add('bg-white');
+                    dots[index].classList.remove('bg-white/50');
+                    dots[index].setAttribute('aria-current', 'true');
+                    
+                    currentItem = index;
+                }
+
+                // Create indicator dots
+                items.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.classList.add('w-3', 'h-3', 'rounded-full', 'bg-white/50', 'hover:bg-white');
+                    dot.setAttribute('aria-current', 'false');
+                    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                    dot.addEventListener('click', () => {
+                        showItem(i);
+                        resetInterval();
+                    });
+                    indicatorsContainer.appendChild(dot);
+                });
+
+                // Event listeners for next/prev buttons
+                nextButton.addEventListener('click', () => {
+                    const nextIndex = (currentItem + 1) % items.length;
+                    showItem(nextIndex);
+                    resetInterval();
+                });
+
+                prevButton.addEventListener('click', () => {
+                    const prevIndex = (currentItem - 1 + items.length) % items.length;
+                    showItem(prevIndex);
+                    resetInterval();
+                });
+                
+                // Auto-play functionality
+                function startInterval() {
+                    slideInterval = setInterval(() => {
+                        const nextIndex = (currentItem + 1) % items.length;
+                        showItem(nextIndex);
+                    }, 5000); // Change slide every 5 seconds
+                }
+
+                function resetInterval() {
+                    clearInterval(slideInterval);
+                    startInterval();
+                }
+
+                // Initial setup
+                showItem(0);
+                startInterval();
+            }
+            // --- END: Carousel Logic ---
         });
     </script>
 </body>
