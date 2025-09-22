@@ -246,17 +246,20 @@
             <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent opacity-90"></div>
         </section>
 
-        <section id="highlights" class="py-20 bg-white">
-            <div id="image-carousel" class="relative w-full max-w-5xl mx-auto shadow-lg group" data-carousel="slide">
-                <div class="relative overflow-hidden rounded-lg lg:h-[70vh] touch-pan-y">
-                    <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./images/gallery/group_pic.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1" loading="lazy">
+        <section id="highlights" class="min-h-screen bg-black">
+            <div id="image-carousel" class="relative w-full h-screen group" data-carousel="slide">
+                <div class="relative overflow-hidden h-full touch-pan-y">
+                    <div class="carousel-item duration-700 ease-in-out h-full hidden">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <img src="./images/gallery/ggroup_pic2.png" class="absolute inset-0 w-full h-full object-cover" alt="Group Photo 1" loading="lazy">
                     </div>
-                    <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./images/gallery/ggroup_pic2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 2" loading="lazy">
+                    <div class="carousel-item duration-700 ease-in-out h-full hidden">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <img src="./images/gallery/group_pic.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Group Photo 2" loading="lazy">
                     </div>
-                    <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./images/gallery/image.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 3" loading="lazy">
+                    <div class="carousel-item duration-700 ease-in-out h-full hidden">
+                        <div class="absolute inset-0 bg-black/30"></div>
+                        <img src="./images/gallery/image.png" class="absolute inset-0 w-full h-full object-cover" alt="Group Photo 3" loading="lazy">
                     </div>
                 </div>
                 <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse" id="carousel-indicators">
@@ -1065,7 +1068,11 @@
             
             function updateSlide() {
                 items.forEach((item, index) => {
-                    item.style.display = index === currentSlide ? 'block' : 'none';
+                    if (index === currentSlide) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
                 });
                 
                 const dots = indicators.children;
