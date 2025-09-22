@@ -5,16 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Edge AI Lab | University Name </title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
+    <link href="/css/styles.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'cmu-red': '#C41230',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                }
+            }
         }
+    </script>
+    <style>
+        :root {
+            --cmu-red: #C41230;
+        }
+
+        /* Dark mode overrides */
+        .dark .text-slate-600 {
+            color: #cbd5e1;
+        }
+        .dark .border-slate-200 {
+            border-color: #334155;
+        }
+        .dark .from-white {
+            --tw-gradient-from: #1e293b;
+        }
+        .dark .to-slate-50 {
+            --tw-gradient-to: #0f172a;
+        }
+
+        /* Smooth transition for dark mode */
+        html.transition,
+        html.transition *,
+        html.transition *:before,
+        html.transition *:after {
+            transition: all 750ms !important;
+            transition-delay: 0 !important;
+        }
+
         /* Simple animation for section fade-in on scroll */
         .fade-in-section {
             opacity: 0;
@@ -25,52 +75,144 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* CMU Red color utilities */
+        .bg-cmu-red {
+            background-color: var(--cmu-red);
+        }
+        .text-cmu-red {
+            color: var(--cmu-red);
+        }
+        .hover\:bg-cmu-red:hover {
+            background-color: var(--cmu-red);
+        }
+        .hover\:text-cmu-red:hover {
+            color: var(--cmu-red);
+        }
+
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800 transition-colors duration-300">
 
-    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 shadow-sm">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div>
                 <a href="#">
-                    <img src="./image copy.png" alt="Mobile Edge AI Lab Logo" class="h-12 w-auto">
+                    <img src="./images/logos/image copy.png" alt="Mobile Edge AI Lab Logo" class="h-12 w-auto">
                 </a>
             </div>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="text-slate-600 hover:text-blue-600 transition-colors">Home</a>
-                <a href="#news" class="text-slate-600 hover:text-blue-600 transition-colors">News</a>
-                <a href="#research" class="text-slate-600 hover:text-blue-600 transition-colors">Research</a>
-                <a href="#publications" class="text-slate-600 hover:text-blue-600 transition-colors">Publications</a>
-                <a href="#people" class="text-slate-600 hover:text-blue-600 transition-colors">People</a>
-                <a href="#contact" class="bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all shadow-sm">Contact Us</a>
+                <a href="#home" class="text-slate-700 hover:text-cmu-red font-medium transition-colors">Home</a>
+                <a href="#news" class="text-slate-700 hover:text-cmu-red font-medium transition-colors">News</a>
+                <a href="#research" class="text-slate-700 hover:text-cmu-red font-medium transition-colors">Research</a>
+                <a href="#publications" class="text-slate-700 hover:text-cmu-red font-medium transition-colors">Publications</a>
+                <a href="#people" class="text-slate-700 hover:text-cmu-red font-medium transition-colors dark:text-slate-300">People</a>
+                <button id="theme-toggle" class="p-2 text-slate-700 hover:text-cmu-red transition-colors dark:text-slate-300">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                </button>
+                <a href="#contact" class="bg-cmu-red text-white px-5 py-2 rounded-md hover:bg-opacity-90 transition-all shadow-sm font-medium">Contact Us</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-slate-500">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="#home" class="block text-slate-600 hover:text-blue-600 transition-colors">Home</a>
-            <a href="#news" class="block text-slate-600 hover:text-blue-600 transition-colors">News</a>
-            <a href="#research" class="block text-slate-600 hover:text-blue-600 transition-colors">Research</a>
-            <a href="#publications" class="block text-slate-600 hover:text-blue-600 transition-colors">Publications</a>
-            <a href="#people" class="block text-slate-600 hover:text-blue-600 transition-colors">People</a>
-            <a href="#contact" class="block bg-black text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-all">Contact Us</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 bg-white/95 backdrop-blur-md">
+            <a href="#home" class="block text-slate-700 hover:text-cmu-red font-medium transition-colors">Home</a>
+            <a href="#news" class="block text-slate-700 hover:text-cmu-red font-medium transition-colors">News</a>
+            <a href="#research" class="block text-slate-700 hover:text-cmu-red font-medium transition-colors">Research</a>
+            <a href="#publications" class="block text-slate-700 hover:text-cmu-red font-medium transition-colors">Publications</a>
+            <a href="#people" class="block text-slate-700 hover:text-cmu-red font-medium transition-colors">People</a>
+            <a href="#contact" class="block bg-cmu-red text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all font-medium">Contact Us</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            VANTA.NET({
+                el: "#vanta-canvas",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0xc41230,
+                backgroundColor: 0x000000,
+                points: 8.00,
+                maxDistance: 20.00,
+                spacing: 18.00,
+                showDots: false
+            });
+        });
+    </script>
 
-        <section id="home" class="text-center pt-0 pb-0 fade-in-section">
+    <main class="relative">
+        <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div id="vanta-canvas" class="absolute inset-0 -z-10 opacity-40"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/20 pointer-events-none"></div>
+            
+            <div class="container mx-auto px-6 py-32 relative z-10">
+                <div class="max-w-4xl mx-auto text-center text-white space-y-12">
+                    <div class="space-y-6">
+                        <span class="text-sm md:text-base tracking-widest uppercase text-cmu-red font-medium inline-block">Mobile Edge AI Laboratory</span>
+                        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 hero-text opacity-0">
+                            Where Intelligence 
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cmu-red to-red-400">Meets the Edge</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl hero-text opacity-0 delay-300 font-light leading-relaxed max-w-3xl mx-auto">
+                            Pioneering the next generation of distributed intelligence for a world where every device thinks, learns, and adapts in real-time.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8 hero-text opacity-0 delay-500 pt-4">
+                        <a href="#research" class="group inline-flex items-center bg-cmu-red px-8 py-4 rounded-full transition-all duration-300 hover:bg-opacity-90 hover:transform hover:scale-105">
+                            <span class="text-white text-lg font-medium">Discover Our Breakthroughs</span>
+                            <svg class="w-5 h-5 ml-2 text-white transition-transform duration-300 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </a>
+                        <a href="#publications" class="group inline-flex items-center px-8 py-4 rounded-full border-2 border-white/30 hover:bg-white/10 transition-all duration-300">
+                            <span class="text-white text-lg font-medium">View Publications</span>
+                            <svg class="w-5 h-5 ml-2 text-white transition-transform duration-300 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- <div class="pt-12 opacity-75">
+                        <p class="text-sm tracking-wide">Research Collaborations With</p>
+                        <div class="flex justify-center items-center gap-8 mt-4">
+                            <img src="./images/research/Utrecht.png" alt="Utrecht University" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
+                            <img src="./images/research/AUC.png" alt="AUC" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
+                            <img src="./images/research/UxA.png" alt="UxA" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            
+            <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent opacity-90"></div>
+        </section>
+
+        <section id="highlights" class="py-20 bg-white">
             <div id="image-carousel" class="relative w-full max-w-5xl mx-auto shadow-lg" data-carousel="slide">
-                <div class="relative  overflow-hidden rounded-lg lg:h-[70vh]">
+                <div class="relative overflow-hidden rounded-lg lg:h-[70vh]">
                     <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./image.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
+                        <img src="./images/gallery/image.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
                     </div>
                     <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./group_pic.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
+                        <img src="./images/gallery/group_pic.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 2">
                     </div>
                     <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./ggroup_pic2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
+                        <img src="./images/gallery/ggroup_pic2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 3">
                     </div>
                 </div>
                 <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse" id="carousel-indicators">
@@ -90,231 +232,720 @@
             </div>
         </section>
 
-        <section id="news" class="py-16 fade-in-section">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900">News & Updates</h2>
-                <p class="text-slate-600 mt-2">Latest announcements and achievements from our lab.</p>
-            </div>
+        <section id="metrics" class="py-16 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 fade-in-section">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Publications Metric -->
+                    <div class="relative group">
+                        <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl text-center relative z-10">
+                            <div class="text-4xl font-bold text-cmu-red mb-2 counter" data-target="25">0</div>
+                            <p class="text-slate-600 dark:text-slate-300 font-medium">Publications</p>
+                            <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl -z-10"></div>
+                        </div>
+                    </div>
 
-            <div class="max-w-4xl mx-auto space-y-12">
-                <div class="news-item md:grid md:grid-cols-3 gap-8 items-center">
-                    <img src="https://placehold.co/600x400/BFDBFE/1E3A8A?text=News+Image" alt="News item thumbnail" class="rounded-lg shadow-md md:col-span-1 mb-4 md:mb-0">
-                    <div class="md:col-span-2">
-                        <p class="text-slate-500 text-sm">September 19, 2025</p>
-                        <h3 class="font-semibold text-xl text-slate-800 mt-1">In a Recent publication, We Uncover Critical Insights into Motorcycle Safety in Africa</h3>
-                        <p class="text-slate-600 mt-2">Our latest paper, "Seeing the Threat: How Drivers React to Motorcycles in African Traffic," has been accepted by the prestigious IEEE Intelligent Transportation System Society Conference. This pioneering study sheds light on crucial driver behaviors, offering vital data to improve road safety and policy in the region.</p>
+                    <!-- Team Members -->
+                    <div class="relative group">
+                        <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl text-center relative z-10">
+                            <div class="text-4xl font-bold text-cmu-red mb-2 counter" data-target="12">0</div>
+                            <p class="text-slate-600 dark:text-slate-300 font-medium">Team Members</p>
+                            <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl -z-10"></div>
+                        </div>
+                    </div>
+
+                    <!-- Active Projects -->
+                    <div class="relative group">
+                        <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl text-center relative z-10">
+                            <div class="text-4xl font-bold text-cmu-red mb-2 counter" data-target="8">0</div>
+                            <p class="text-slate-600 dark:text-slate-300 font-medium">Active Projects</p>
+                            <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl -z-10"></div>
+                        </div>
+                    </div>
+
+                    <!-- Partners -->
+                    <div class="relative group">
+                        <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl text-center relative z-10">
+                            <div class="text-4xl font-bold text-cmu-red mb-2 counter" data-target="15">0</div>
+                            <p class="text-slate-600 dark:text-slate-300 font-medium">Industry Partners</p>
+                            <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl -z-10"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="research" class="py-16 fade-in-section bg-white rounded-lg shadow-md">
-            <div class="text-center mb-12 px-6">
-                <h2 class="text-3xl font-bold text-slate-900">Our Research</h2>
-                <p class="text-slate-600 mt-2">Our research interests span Generative AI, Business Optimization, Entrepreneurial Ecosystems, Edge Computing, Mobility Analytics, and Intelligent Transportation Systems. </p>
+        <section id="news" class="py-16 fade-in-section">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 tracking-tight dark:text-white">News & Updates</h2>
+                <div class="w-20 h-1 bg-cmu-red mx-auto mt-4 mb-4"></div>
+                <p class="text-slate-600 mt-2 text-lg max-w-2xl mx-auto dark:text-slate-300">Latest announcements and achievements from our lab.</p>
+            </div>
+
+            <div class="max-w-5xl mx-auto space-y-12 px-4">
+                <!-- News Item 1 -->
+                <div class="news-item group bg-white dark:bg-slate-800 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+                    <div class="md:grid md:grid-cols-3 md:items-stretch">
+                        <div class="md:col-span-1 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                            <img src="https://placehold.co/600x400/BFDBFE/1E3A8A?text=News+Image" alt="News item thumbnail" 
+                                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="md:col-span-2 p-8 flex flex-col justify-center">
+                            <div class="flex items-center space-x-4 mb-3">
+                                <p class="text-cmu-red font-semibold text-sm px-3 py-1 bg-cmu-red/10 rounded-full">Latest News</p>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">September 19, 2025</p>
+                            </div>
+                            <h3 class="font-bold text-2xl text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">
+                                In a Recent Publication, We Uncover Critical Insights into Motorcycle Safety in Africa
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-4 leading-relaxed">
+                                Our latest paper, "Seeing the Threat: How Drivers React to Motorcycles in African Traffic," has been accepted by the prestigious IEEE Intelligent Transportation System Society Conference. This pioneering study sheds light on crucial driver behaviors, offering vital data to improve road safety and policy in the region.
+                            </p>
+                            <div class="mt-6 flex items-center space-x-4">
+                                <a href="#" class="inline-flex items-center text-cmu-red hover:text-cmu-red/80 font-medium transition-colors">
+                                    Read More
+                                    <svg class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 2 -->
+                <div class="news-item group bg-white dark:bg-slate-800 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+                    <div class="md:grid md:grid-cols-3 md:items-stretch">
+                        <div class="md:col-span-1 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                            <img src="https://placehold.co/600x400/BFDBFE/1E3A8A?text=Conference" alt="Conference thumbnail" 
+                                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="md:col-span-2 p-8 flex flex-col justify-center">
+                            <div class="flex items-center space-x-4 mb-3">
+                                <p class="text-cmu-red font-semibold text-sm px-3 py-1 bg-cmu-red/10 rounded-full">Conference</p>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">September 15, 2025</p>
+                            </div>
+                            <h3 class="font-bold text-2xl text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">
+                                Lab Members Present at International AI Conference
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-4 leading-relaxed">
+                                Our team members showcased their latest research findings at the International Conference on AI and Edge Computing. The presentation received significant attention from the academic community.
+                            </p>
+                            <div class="mt-6 flex items-center space-x-4">
+                                <a href="#" class="inline-flex items-center text-cmu-red hover:text-cmu-red/80 font-medium transition-colors">
+                                    Read More
+                                    <svg class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="py-16 fade-in-section bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Our Research</h2>
+                <div class="w-20 h-1 bg-cmu-red mx-auto mt-4 mb-4"></div>
+                <p class="text-slate-600 dark:text-slate-300 mt-2 text-lg max-w-3xl mx-auto px-4">
+                    Our research interests span Generative AI, Business Optimization, Entrepreneurial Ecosystems, Edge Computing, Mobility Analytics, and Intelligent Transportation Systems.
+                </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
-                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
-                    <img src="./other_assets/digital_twins.png" alt="Project 1" class="rounded-md mb-4 w-full h-48 object-cover">
-                    <h3 class="text-xl font-semibold mb-2 text-slate-900">Pioneering Digital Twins and Mobility </h3>
-                    <p class="text-slate-600">Adapting traffic simulation for Sub-Saharan African cities, integrating Informal Public Transport (IPT) dynamics to optimize transit efficiency and urban mobility planning.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-6">
+                <!-- Digital Twins and Mobility -->
+                <div class="research-card group bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100 dark:border-slate-700">
+                    <div class="overflow-hidden rounded-lg mb-6 relative aspect-video">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/30 via-cmu-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                        <img src="./images/research/digital_twins.png" alt="Digital twins visualization showing traffic simulation in African cities" 
+                             class="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="relative z-10 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">
+                            Pioneering Digital Twins and Mobility
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Adapting traffic simulation for Sub-Saharan African cities, integrating Informal Public Transport (IPT) dynamics to optimize transit efficiency and urban mobility planning.
+                        </p>
+                        <div class="pt-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Digital Twins</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Urban Mobility</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Traffic Optimization</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
-                    <img src="./other_assets/federated.png" alt="Project 2" class="rounded-md mb-4 w-full h-48 object-cover">
-                    <h3 class="text-xl font-semibold mb-2 text-slate-900">Federated Computing and Graph Theory</h3>
-                    <p class="text-slate-600"> <p class="text-slate-600">Applying graph theory principles to build scalable and robust federated computing solutions. Exploring data privacy while training powerful AI models.</p> </p>
+
+                <!-- Federated Computing -->
+                <div class="research-card group bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100 dark:border-slate-700">
+                    <div class="overflow-hidden rounded-lg mb-6 relative aspect-video">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/30 via-cmu-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                        <img src="./images/research/federated.png" alt="Visualization of federated learning and distributed computing networks" 
+                             class="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="relative z-10 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">
+                            Federated Computing and Graph Theory
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Applying graph theory principles to build scalable and robust federated computing solutions. Exploring data privacy while training powerful AI models.
+                        </p>
+                        <div class="pt-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Federated Learning</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Graph Theory</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Privacy</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-6 rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
-                    <img src="./other_assets/AI.png" class="rounded-md mb-4 w-full h-48 object-cover">
-                    <h3 class="text-xl font-semibold mb-2 text-slate-900">Gen AI and Applications</h3>
-                    <p class="text-slate-600">This project explores the transformative capabilities of Generative AI across diverse domains, from agentic deployment patterns to complex problem-solving.</p>                </div>
+
+                <!-- Gen AI -->
+                <div class="research-card group bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100 dark:border-slate-700">
+                    <div class="overflow-hidden rounded-lg mb-6 relative aspect-video">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/30 via-cmu-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                        <img src="./images/research/AI.png" alt="Abstract representation of generative AI and its applications" 
+                             class="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="relative z-10 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">
+                            Gen AI and Applications
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Exploring the transformative capabilities of Generative AI across diverse domains, from agentic deployment patterns to complex problem-solving in real-world scenarios.
+                        </p>
+                        <div class="pt-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Generative AI</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">ML Applications</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">AI Agents</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operational Excellence & Digital Transformation -->
+                <div class="research-card group bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100 dark:border-slate-700">
+                    <div class="overflow-hidden rounded-lg mb-6 relative aspect-video">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/30 via-cmu-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                        <img src="./images/research/agent.png" alt="Visualization of automated workflows and AI-driven analytics" 
+                             class="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="relative z-10 space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">
+                            Operational Excellence & Digital Transformation
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Enhancing CMU-Africa's operations through the integration of Business Process Automation, Data Analytics, and AI. Our research focuses on developing intelligent systems that streamline workflows, enable data-driven decision-making, and create a more agile and innovative operational environment.
+                        </p>
+                        <div class="pt-4 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Process Automation</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Data Analytics</span>
+                            <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">AI Systems</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
         <section id="publications" class="py-16 fade-in-section">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900">Publications</h2>
-                <p class="text-slate-600 mt-2">Our latest contributions.</p>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 tracking-tight dark:text-white">Publications</h2>
+                <div class="w-20 h-1 bg-cmu-red mx-auto mt-4 mb-4"></div>
+                <p class="text-slate-600 dark:text-slate-300 mt-2 text-lg">Our latest research contributions.</p>
             </div>
 
-            <div class="space-y-6 max-w-4xl mx-auto">
-                <div class="publication-item bg-white p-6 rounded-lg shadow-sm border border-slate-200">
-                    <p class="text-slate-500 text-sm">2025</p>
-                    <h3 class="font-semibold text-lg text-slate-800">Seeing the Threat: How Drivers React to Motocycles in African Traffic</h3>
-                    <p class="text-slate-600 mt-1">E. Brian, B. Joao <span class="font-semibold"></span></p>
-                    <p class="text-slate-500 italic mt-1">IEEE International Conference on Vehicular Electronics and Safety (ICVES)</p>
-                    <div class="mt-2 space-x-4">
-                        <a href="#" class="text-blue-600 hover:underline">DOI</a>
-                        <a href="#" class="text-blue-600 hover:underline">PDF</a>
+            <div class="space-y-6 max-w-5xl mx-auto px-4">
+                <!-- Publication Filters -->
+                <div class="flex flex-wrap gap-4 justify-center mb-8">
+                    <button class="px-4 py-2 rounded-full bg-cmu-red text-white font-medium hover:bg-opacity-90 transition-all">
+                        All Publications
+                    </button>
+                    <button class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700">
+                        2025
+                    </button>
+                    <button class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700">
+                        Computer Vision
+                    </button>
+                    <button class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700">
+                        Security
+                    </button>
+                    <button class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700">
+                        Urban Mobility
+                    </button>
+                </div>
+
+                <!-- Publications List -->
+                <div class="space-y-8">
+                    <!-- Unveiling Entrepreneurial Success -->
+                    <div class="publication-item group bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-center justify-between flex-wrap gap-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="px-3 py-1 bg-cmu-red/10 text-cmu-red rounded-full text-sm font-semibold">2025</span>
+                                <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Entrepreneurship</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="font-bold text-xl text-slate-900 dark:text-white mt-4 group-hover:text-cmu-red transition-colors">
+                            Unveiling Entrepreneurial Success: Generative AI Insights into African Startup Founders
+                        </h3>
+                        
+                        <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                            <p class="text-slate-700 dark:text-slate-300">
+                                <span class="font-medium">Authors:</span>
+                                <span class="italic">Roy Esibe, Muhammad Aliyu, Jesse Thornburg, João Barros, Erik Stam</span>
+                            </p>
+                        </div>
+
+                        <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Uses Generative AI and Retrieval-Augmented Generation (RAG) to study the journeys of founders from African unicorn startups, identifying success factors such as mentorship, diaspora networks, and strategic pivots.
+                        </p>
+                    </div>
+
+                    <!-- Network Hexagons -->
+                    <div class="publication-item group bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-center justify-between flex-wrap gap-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="px-3 py-1 bg-cmu-red/10 text-cmu-red rounded-full text-sm font-semibold">2025</span>
+                                <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Security</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <a href="https://arxiv.org/pdf/2506.05601" target="_blank" class="flex items-center space-x-2 text-slate-500 dark:text-slate-400 hover:text-cmu-red dark:hover:text-cmu-red transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                    <span>PDF</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <h3 class="font-bold text-xl text-slate-900 dark:text-white mt-4 group-hover:text-cmu-red transition-colors">
+                            Network Hexagons Under Attack: Secure Crowdsourcing of Georeferenced Data
+                        </h3>
+                        
+                        <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                            <p class="text-slate-700 dark:text-slate-300">
+                                <span class="font-medium">Authors:</span>
+                                <span class="italic">Okemawo Obadofin, João Barros</span>
+                            </p>
+                            <span class="text-slate-400 dark:text-slate-500">•</span>
+                            <p class="text-slate-600 dark:text-slate-400">
+                                IEEE Security and Privacy Workshops (SPW)
+                            </p>
+                        </div>
+
+                        <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Develops the Nexagon protocol for crowdsourcing geospatial data from connected vehicles while preserving privacy and anonymity. Incorporates ephemeral IDs, hardware-backed attestation, and pseudonym certificates.
+                        </p>
+                    </div>
+
+                    <!-- Eyes and Ears -->
+                    <div class="publication-item group bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-center justify-between flex-wrap gap-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="px-3 py-1 bg-cmu-red/10 text-cmu-red rounded-full text-sm font-semibold">2025</span>
+                                <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm">Computer Vision</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <a href="https://ieeexplore.ieee.org/abstract/document/11084628/" target="_blank" class="flex items-center space-x-2 text-slate-500 dark:text-slate-400 hover:text-cmu-red dark:hover:text-cmu-red transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>
+                                    <span>DOI</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <h3 class="font-bold text-xl text-slate-900 dark:text-white mt-4 group-hover:text-cmu-red transition-colors">
+                            Eyes and Ears: Automated Annotation of Audio Data Using Computer Vision
+                        </h3>
+                        
+                        <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                            <p class="text-slate-700 dark:text-slate-300">
+                                <span class="font-medium">Authors:</span>
+                                <span class="italic">Galane Basha Namomsa, Alex Gichamba, Brian Ebiyau, João Barros</span>
+                            </p>
+                            <span class="text-slate-400 dark:text-slate-500">•</span>
+                            <p class="text-slate-600 dark:text-slate-400">
+                                IEEE International Conference on Image Processing (ICIP)
+                            </p>
+                        </div>
+
+                        <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Introduces a low-cost method to annotate audio by pairing YOLOv8 computer vision detections with sound data. Applied to traffic monitoring, achieving 26x speed-up compared to manual annotation.
+                        </p>
+                    </div>
+
+                    <div class="flex justify-center mt-8">
+                        <button class="px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 rounded-lg inline-flex items-center space-x-2">
+                            <span>Load More Publications</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="people" class="py-16 fade-in-section">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900">Our Team</h2>
-                <p class="text-slate-600 mt-2">The researchers behind the science.</p>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 tracking-tight">Our Team</h2>
+                <div class="w-20 h-1 bg-cmu-red mx-auto mt-4 mb-4"></div>
+                <p class="text-slate-600 mt-2 text-lg">The researchers behind the science.</p>
             </div>
 
-            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-900">Principal Investigator</h3>
-            <div class="flex justify-center mb-12">
-                <div class="team-member-card text-center w-full max-w-sm bg-white p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/joao.png" alt="PI Name" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="text-xl font-bold text-slate-900">Professor Joao Barros</h4>
-                    <p class="text-slate-600 mt-2 text-sm">Associate Director & Research Professor</p>
+            <h3 class="text-2xl font-semibold mb-8 text-center text-slate-900 dark:text-white">Principal Investigator</h3>
+            <div class="flex justify-center mb-16">
+                <div class="team-member-card text-center w-full max-w-sm bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <img src="./images/team/joao.png" alt="Professor Joao Barros" class="w-40 h-40 rounded-full mx-auto mb-6 object-cover ring-4 ring-cmu-red/20">
+                    <h4 class="text-2xl font-bold text-slate-900 dark:text-white">Professor Joao Barros</h4>
+                    <p class="text-cmu-red font-medium mt-2">Associate Director & Research Professor</p>
                 </div>
             </div>
 
-            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-900">Current Members</h3>
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/aline.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Aline Ingabire</h4>
-                    <p class="text-slate-500 text-sm">Postdoctoral Researcher @ CMU Africa</p>
-                </div>
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Karim Banawan</h4>
-                    <p class="text-slate-500 text-sm">Associate Teaching professor @ American University in Cairo</p>
-                </div>
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/roy.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Roy Esibe</h4>
-                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+            <h3 class="text-2xl font-semibold mb-8 text-center text-slate-900 dark:text-white">Co-Principal Investigators</h3>
+            <div class="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+                <!-- Jesse Thornburg -->
+                <div class="team-member-card text-center w-full bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="w-40 h-40 rounded-full mx-auto mb-6 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-4xl text-slate-500 dark:text-slate-300">JT</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 dark:text-white">Jesse Thornburg</h4>
+                    <p class="text-cmu-red font-medium mt-2">Assistant Teaching Professor</p>
                 </div>
 
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/mohammed.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Mohammed Aliyu</h4>
-                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                <!-- Erik Stam -->
+                <div class="team-member-card text-center w-full bg-white dark:bg-slate-800 p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <div class="w-40 h-40 rounded-full mx-auto mb-6 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-4xl text-slate-500 dark:text-slate-300">ES</span>
+                    </div>
+                    <h4 class="text-2xl font-bold text-slate-900 dark:text-white">Professor Erik Stam</h4>
+                    <p class="text-cmu-red font-medium mt-2">Utrecht University School of Economics</p>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2 text-sm">Full Professor of Strategy, Organization & Entrepreneurship and Academic Director of the Center for Entrepreneurship at Utrecht University. Extraordinary Professor of Economics at Stellenbosch University.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-900 dark:text-white">Team</h3>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <!-- Aline Ingabire -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <img src="./images/team/aline.png" alt="Aline Ingabire" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Aline Ingabire</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Postdoctoral Researcher @ CMU Africa</p>
                 </div>
 
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/Agnes.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Agnes Nakalembe</h4>
-                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                <!-- Karim Banawan -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">KB</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Karim Banawan</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Associate Teaching Professor @ AUC</p>
                 </div>
-
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Okemawo Obadofin</h4>
-                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
-                </div>
-
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Brian Kipkirui</h4>
-                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+               
+                <!-- Agnes Nakalembe -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <img src="./images/team/Agnes.png" alt="Agnes Nakalembe" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Agnes Nakalembe</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate @ CMU Africa</p>
                 </div>
                 
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/ebiyau.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Brian Ebiyau</h4>
-                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                <!-- Okemawo Obadofin -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">OO</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Okemawo Obadofin</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate @ CMU Africa</p>
                 </div>
 
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="./members_assets/scovia.png" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Scovia Achan</h4>
-                    <p class="text-slate-500 text-sm">Research Associate @ CMU Africa</p>
+                <!-- Brian Kipkirui -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">BK</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Brian Kipkirui</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate @ CMU Africa</p>
+                </div>
+                
+                <!-- Brian Ebiyau -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <img src="./images/team/ebiyau.png" alt="Brian Ebiyau" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Brian Ebiyau</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate @ CMU Africa</p>
+                </div>
+                
+                <!-- Muhammad Aliyu -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <img src="./images/team/mohammed.png" alt="Muhammad Aliyu" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Muhammad Aliyu</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate @ CMU Africa</p>
                 </div>
 
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Julius Wasajja</h4>
-                    <p class="text-slate-500 text-sm">Research Assistant @ CMU Africa</p>
+
+                <!-- Scovia Achan -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <img src="./images/team/scovia.png" alt="Scovia Achan" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Scovia Achan</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate @ CMU Africa</p>
                 </div>
 
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Thomas Seleshi</h4>
-                    <p class="text-slate-500 text-sm">Research Assistant @ CMU Africa</p>
+                <!-- Roy Esibe -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <img src="./images/team/roy.png" alt="Roy Esibe" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Roy Esibe</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate @ CMU Africa</p>
                 </div>
 
-                <div class="team-member-card text-center bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                    <img src="https://placehold.co/200x200/E2E8F0/1E293B?text=Member" alt="Member Name" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-white">
-                    <h4 class="font-semibold text-slate-800">Marlyn Mayienga</h4>
-                    <p class="text-slate-500 text-sm">Research Assistant @ CMU Africa</p>
+                <!-- Julius Wasajja -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">JW</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Julius Wasajja</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Assistant @ CMU Africa</p>
+                </div>
+
+                <!-- Thomas Seleshi -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">TS</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Thomas Seleshi</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Assistant @ CMU Africa</p>
+                </div>
+
+                <!-- Marlyn Mayienga -->
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">MM</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Marlyn Mayienga</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Assistant @ CMU Africa</p>
                 </div>
             </div>
 
-            <h3 class="text-2xl font-semibold mt-12 mb-6 text-center text-slate-900">Alumni</h3>
-            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-slate-200">
-                <ul class="list-disc list-inside space-y-2 text-slate-700">
-                    <li><strong>Vital</strong> (Research Associate) - Vital  .......</li>
-                    <li><strong>David</strong> (Research Associate) - David .......</li>
-                    <li><strong>Galane</strong> (Research Associate) - Galane .......</li>
-                    <li><strong>Ernest</strong> (Research Associate) - Ernest .......</li>
-                    <li><strong>Angelique</strong> (Research Associate) - Angelique .......</li>
-                </ul>
+            <h3 class="text-2xl font-semibold mt-16 mb-8 text-center text-slate-900 dark:text-white">Alumni</h3>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">VA</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Vital Ahishakiye</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">DTN</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">David Tuyishimire Neza</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">GBN</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Galane Basha Namomsa</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">EN</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Ernest Ntizikira</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Postdoctoral Researcher</p>
+                </div>
+
+                <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center ring-4 ring-cmu-red/20">
+                        <span class="text-3xl text-slate-500 dark:text-slate-300">AU</span>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Angelique Uwamahoro</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mt-2">Research Assistant</p>
+                </div>
             </div>
         </section>
 
-        <section id="contact" class="py-16 bg-white rounded-lg shadow-md fade-in-section border border-slate-200">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-slate-900">Get In Touch</h2>
-                <p class="text-slate-600 mt-2">We welcome collaborations and inquiries from prospective partners.</p>
+        <section id="contact" class="py-24 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 rounded-xl shadow-md fade-in-section border border-slate-200 dark:border-slate-700">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-900 tracking-tight dark:text-white">Get In Touch</h2>
+                <div class="w-20 h-1 bg-cmu-red mx-auto mt-4 mb-4"></div>
+                <p class="text-slate-600 dark:text-slate-300 mt-2 text-lg max-w-2xl mx-auto">
+                    We welcome collaborations and inquiries from prospective partners and students.
+                </p>
             </div>
             
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-start px-4">
-                
-                <div class="text-center md:text-left">
-                    <h3 class="text-xl font-semibold text-slate-800 mb-4">Our Location 🗺️</h3>
-                    
-                    <div class="mb-6 shadow-lg rounded-lg overflow-hidden">
-                        <iframe 
-                            src="https://maps.google.com/maps?q=-1.9353531269396427,30.158007148105302&z=15&output=embed" 
-                            height="250" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            class="w-full">
-                        </iframe>
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Left Column: Contact Information -->
+                    <div class="lg:col-span-1 space-y-8">
+                        <div class="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-md border border-slate-200 dark:border-slate-700">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Contact Information</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-10 h-10 rounded-full bg-cmu-red/10 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-cmu-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-slate-900 dark:text-white">Address</h4>
+                                        <p class="text-slate-600 dark:text-slate-300 mt-1">
+                                            Carnegie Mellon University Africa<br>
+                                            Kigali Innovation City, Bumbogo<br>
+                                            Kigali, Rwanda
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-10 h-10 rounded-full bg-cmu-red/10 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-cmu-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-slate-900 dark:text-white">Email</h4>
+                                        <a href="mailto:jbarros@andrew.cmu.edu" class="text-cmu-red hover:text-cmu-red/80 transition-colors mt-1 block">
+                                            jbarros@andrew.cmu.edu
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-10 h-10 rounded-full bg-cmu-red/10 flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-cmu-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-slate-900 dark:text-white">Time Zone</h4>
+                                        <p class="text-slate-600 dark:text-slate-300 mt-1">
+                                            Central Africa Time (CAT), UTC+2
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-md border border-slate-200 dark:border-slate-700">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Connect With Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-cmu-red hover:text-white transition-all">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-cmu-red hover:text-white transition-all">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-cmu-red hover:text-white transition-all">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                                </a>
+                            </div>
+                        </div> -->
                     </div>
-        
-                    <div>
-                        <p class="text-slate-700">
-                            <strong>Carnegie Mellon University Africa</strong><br>
-                            Kigali Innovation City, Bumbogo<br>
-                            Kigali, Rwanda
-                        </p>
-                        <p class="text-slate-500 mt-4 text-sm">
-                            <svg class="inline-block w-4 h-4 mr-1 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <strong>Timezone:</strong> Central Africa Time (CAT), UTC+2
-                        </p>
+
+                    <!-- Right Column: Map and Form -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border border-slate-200 dark:border-slate-700">
+                            <iframe 
+                                src="https://maps.google.com/maps?q=-1.9353531269396427,30.158007148105302&z=15&output=embed" 
+                                height="400" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="w-full">
+                            </iframe>
+                        </div>
+
+                        <!-- <div class="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-md border border-slate-200 dark:border-slate-700">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Send us a Message</h3>
+                            <form class="space-y-6">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Name</label>
+                                        <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-cmu-red focus:border-transparent outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
+                                        <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-cmu-red focus:border-transparent outline-none transition-all">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Subject</label>
+                                    <input type="text" id="subject" name="subject" class="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-cmu-red focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-cmu-red focus:border-transparent outline-none transition-all"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full bg-cmu-red text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition-all font-medium">
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
+                        </div> -->
                     </div>
-                </div>
-        
-                <div class="text-center md:text-left md:pl-8">
-                    <h3 class="text-xl font-semibold text-slate-800 mb-4">Email</h3>
-                    <p class="text-slate-700">
-                        <strong>For general inquiries:</strong><br>
-                        <a href="mailto:jbarros@andrew.cmu.edu" class="text-blue-600 hover:underline">jbarros@andrew.cmu.edu</a>
-                    </p>
-                    <p class="text-slate-700 mt-4">
-                        <strong>Principal Investigator:</strong><br>
-                        <a href="mailto:jbarros@andrew.cmu.edu" class="text-blue-600 hover:underline">Joao Barros</a>
-                    </p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <section id="partners" class="py-16 bg-slate-50">
+    <section id="partners" class="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-slate-900">Our Partners & Collaborators</h2>
-            <p class="text-slate-600 mt-2 mb-12">We are proud to work with leading organizations in both industry and academia.</p>
+            <h2 class="text-4xl font-bold text-slate-900 tracking-tight dark:text-white">Our Partners & Collaborators</h2>
+            <div class="w-20 h-1 bg-cmu-red mx-auto mt-4 mb-4"></div>
+            <p class="text-slate-600 dark:text-slate-300 mt-2 mb-16 text-lg max-w-2xl mx-auto">
+                We are proud to work with leading organizations in both industry and academia to drive innovation and research excellence.
+            </p>
             
-            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-                <img src="./other_assets/vw.png" alt="Volkswagen Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
-                <img src="./other_assets/rura.png" alt="RURA Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
-                <img src="./other_assets/yego.png" alt="YEGO Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
-                <img src="./other_assets/AUC.png" alt="American University in Cairo Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
-                <img src="./other_assets/UxA.png" alt="University of Amsterdam Logo" class="h-12 lg:h-20 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 items-center justify-items-center max-w-6xl mx-auto">
+                <div class="group relative w-full max-w-[200px] aspect-[3/2] flex items-center justify-center">
+                    <div class="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                    <img src="./images/research/vw.png" alt="Volkswagen Logo" 
+                        class="relative h-12 lg:h-16 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110">
+                </div>
+                <div class="group relative w-full max-w-[200px] aspect-[3/2] flex items-center justify-center">
+                    <div class="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                    <img src="./images/research/rura.png" alt="RURA Logo" 
+                        class="relative h-12 lg:h-16 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110">
+                </div>
+                <div class="group relative w-full max-w-[200px] aspect-[3/2] flex items-center justify-center">
+                    <div class="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                    <img src="./images/research/yego.png" alt="YEGO Logo" 
+                        class="relative h-12 lg:h-16 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110">
+                </div>
+                <div class="group relative w-full max-w-[200px] aspect-[3/2] flex items-center justify-center">
+                    <div class="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                    <img src="./images/research/AUC.png" alt="American University in Cairo Logo" 
+                        class="relative h-12 lg:h-16 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110">
+                </div>
+                <div class="group relative w-full max-w-[200px] aspect-[3/2] flex items-center justify-center">
+                    <div class="absolute inset-0 bg-white dark:bg-slate-700 rounded-xl shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                    <img src="./images/research/Utrecht.png" alt="Utrecht University Logo" 
+                        class="relative h-12 lg:h-16 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110">
+                </div>
+            </div>
+
+            <div class="mt-16 flex justify-center">
+                <a href="#contact" class="inline-flex items-center space-x-2 text-cmu-red hover:text-cmu-red/80 font-medium transition-colors group">
+                    <span>Become a Partner</span>
+                    <svg class="w-5 h-5 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>
@@ -326,7 +957,41 @@
     </footer>
 
     <script>
+        // Dark mode functionality
+        function setDarkMode(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            }
+            updateThemeToggleIcons();
+        }
+
+        function updateThemeToggleIcons() {
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            darkIcon.classList.toggle('hidden', isDark);
+            lightIcon.classList.toggle('hidden', !isDark);
+        }
+
+        // Initialize theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setDarkMode(true);
+        } else {
+            setDarkMode(false);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle button functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                setDarkMode(!isDark);
+            });
             // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -448,7 +1113,128 @@
                 startInterval();
             }
             // --- END: Carousel Logic ---
+
+            // Initialize VANTA.NET effect
+            VANTA.NET({
+                el: "#vanta-canvas",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0xC41230,
+                backgroundColor: 0x000000,
+                points: 15.00,
+                maxDistance: 25.00,
+                spacing: 17.00
+            });
+
+            // Initialize GSAP
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero section animations
+            gsap.to(".hero-text", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power4.out"
+            });
+
+            // Counter animations for metrics
+            const counters = document.querySelectorAll('.counter');
+            let started = false;
+
+            const startCounters = () => {
+                if (started) return;
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2; // Duration in seconds
+                    const startTime = performance.now();
+                    const updateCount = (currentTime) => {
+                        const elapsed = (currentTime - startTime) / 1000; // Convert to seconds
+                        const progress = Math.min(elapsed / duration, 1);
+                        const current = Math.floor(target * progress);
+                        counter.textContent = current;
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+                    requestAnimationFrame(updateCount);
+                });
+                started = true;
+            };
+
+            // Create an intersection observer for the metrics section
+            const metricsSection = document.getElementById('metrics');
+            const metricsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startCounters();
+                        metricsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            if (metricsSection) {
+                metricsObserver.observe(metricsSection);
+            }
+
+            // Scroll animations for sections
+            gsap.utils.toArray('.fade-in-section').forEach((section, i) => {
+                gsap.from(section, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "top 20%",
+                        toggleActions: "play none none reverse",
+                        markers: false
+                    }
+                });
+            });
+
+            // Research cards hover effect
+            const cards = document.querySelectorAll('.research-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            });
         });
     </script>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="/js/theme.js"></script>
+    <script src="/js/carousel.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/particles.js"></script>
 </body>
 </html>
