@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Edge AI Lab | University Name </title>
+    <title>Mobile Edge AI Lab | Carnegie Mellon University Africa</title>
+    <meta name="description" content="Pioneering the next generation of distributed intelligence for a world where every device thinks, learns, and adapts in real-time.">
+    <meta name="keywords" content="Edge AI, Mobile Computing, Artificial Intelligence, Machine Learning, CMU Africa, Research Lab">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mobile Edge AI Lab | CMU Africa">
+    <meta property="og:description" content="Pioneering the next generation of distributed intelligence at Carnegie Mellon University Africa">
+    <meta property="og:image" content="./image.png">
+    <meta property="og:url" content="https://edgeai.africa.cmu.edu">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mobile Edge AI Lab | CMU Africa">
+    <meta name="twitter:description" content="Pioneering the next generation of distributed intelligence at Carnegie Mellon University Africa">
+    <meta name="twitter:image" content="./image.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,10 +85,47 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform;
         }
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Loading skeleton animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .loading-skeleton {
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.1) 25%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.1) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Enhanced hover effects */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Smooth image loading */
+        .image-fade-in {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .image-fade-in.loaded {
+            opacity: 1;
         }
 
         /* CMU Red color utilities */
@@ -188,17 +240,6 @@
                             </svg>
                         </a>
                     </div>
-                    <!-- <div class="pt-12 opacity-75">
-                        <p class="text-sm tracking-wide text-white/80">Research Collaborations With</p>
-                        <div class="flex flex-wrap justify-center items-center gap-8 mt-4">
-                            <img src="./images/research/Utrecht.png" alt="Utrecht University" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
-                            <img src="./images/research/AUC.png" alt="AUC" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
-                            <img src="./images/research/UxA.png" alt="UxA" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
-                            <img src="./images/research/vw.png" alt="Volkswagen" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
-                            <img src="./images/research/rura.png" alt="RURA" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
-                            <img src="./images/research/yego.png" alt="Yego Moto" class="h-8 opacity-75 hover:opacity-100 transition-opacity">
-                        </div>
-                    </div> -->
                 </div>
             </div>
             
@@ -206,32 +247,43 @@
         </section>
 
         <section id="highlights" class="py-20 bg-white">
-            <div id="image-carousel" class="relative w-full max-w-5xl mx-auto shadow-lg" data-carousel="slide">
-                <div class="relative overflow-hidden rounded-lg lg:h-[70vh]">
+            <div id="image-carousel" class="relative w-full max-w-5xl mx-auto shadow-lg group" data-carousel="slide">
+                <div class="relative overflow-hidden rounded-lg lg:h-[70vh] touch-pan-y">
                     <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./images/gallery/image.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1">
+                        <img src="./images/gallery/group_pic.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 1" loading="lazy">
                     </div>
                     <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./images/gallery/group_pic.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 2">
+                        <img src="./images/gallery/ggroup_pic2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 2" loading="lazy">
                     </div>
                     <div class="carousel-item duration-700 ease-in-out">
-                        <img src="./images/gallery/ggroup_pic2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 3">
+                        <img src="./images/gallery/image.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-contain" alt="Group Photo 3" loading="lazy">
                     </div>
                 </div>
                 <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse" id="carousel-indicators">
-                    </div>
-                <button type="button" id="carousel-prev" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cmu-red/30 group-hover:bg-cmu-red/50 group-focus:ring-4 group-focus:ring-cmu-red">
+                </div>
+                <button type="button" id="carousel-prev" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cmu-red/30 group-hover:bg-cmu-red/50 group-focus:ring-4 group-focus:ring-cmu-red backdrop-blur-sm">
                         <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg>
                         <span class="sr-only">Previous</span>
                     </span>
                 </button>
-                <button type="button" id="carousel-next" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cmu-red/30 group-hover:bg-cmu-red/50 group-focus:ring-4 group-focus:ring-cmu-red">
+                <button type="button" id="carousel-next" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cmu-red/30 group-hover:bg-cmu-red/50 group-focus:ring-4 group-focus:ring-cmu-red backdrop-blur-sm">
                         <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg>
                         <span class="sr-only">Next</span>
                     </span>
                 </button>
+                <div class="absolute bottom-5 right-5 z-30">
+                    <button type="button" id="carousel-pause" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-cmu-red/30 hover:bg-cmu-red/50 text-white rounded-full p-2 backdrop-blur-sm">
+                        <svg class="w-4 h-4" id="play-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <svg class="w-4 h-4 hidden" id="pause-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -363,8 +415,8 @@
                 <div class="research-card group bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100 dark:border-slate-700">
                     <div class="overflow-hidden rounded-lg mb-6 relative aspect-video">
                         <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/30 via-cmu-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-                        <img src="./images/research/digital_twins.png" alt="Digital twins visualization showing traffic simulation in African cities" 
-                             class="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105">
+                        <img src="./other_assets/digital_twins.png" alt="Digital twins visualization showing traffic simulation in African cities" 
+                             class="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                     <div class="relative z-10 space-y-4">
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">
@@ -385,8 +437,8 @@
                 <div class="research-card group bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 border border-slate-100 dark:border-slate-700">
                     <div class="overflow-hidden rounded-lg mb-6 relative aspect-video">
                         <div class="absolute inset-0 bg-gradient-to-tr from-cmu-red/30 via-cmu-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-                        <img src="./images/research/federated.png" alt="Visualization of federated learning and distributed computing networks" 
-                             class="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105">
+                        <img src="./other_assets/federated.png" alt="Visualization of federated learning and distributed computing networks" 
+                             class="w-full h-full object-cover transform transition-all duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                     <div class="relative z-10 space-y-4">
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">
@@ -631,7 +683,7 @@
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
                 <!-- Aline Ingabire -->
                 <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
-                    <img src="./images/team/aline.png" alt="Aline Ingabire" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105">
+                    <img src="./members_assets/aline.png" alt="Aline Ingabire" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105" loading="lazy">
                     <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Aline Ingabire</h4>
                     <p class="text-slate-600 dark:text-slate-300 mt-2">Postdoctoral Researcher @ CMU Africa</p>
                 </div>
@@ -647,7 +699,7 @@
                
                 <!-- Agnes Nakalembe -->
                 <div class="team-member-card text-center bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
-                    <img src="./images/team/Agnes.png" alt="Agnes Nakalembe" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105">
+                    <img src="./members_assets/Agnes.png" alt="Agnes Nakalembe" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-cmu-red/20 transition-transform duration-300 group-hover:scale-105" loading="lazy">
                     <h4 class="font-bold text-lg text-slate-900 dark:text-white group-hover:text-cmu-red transition-colors">Agnes Nakalembe</h4>
                     <p class="text-slate-600 dark:text-slate-300 mt-2">Research Associate @ CMU Africa</p>
                 </div>
@@ -962,6 +1014,7 @@
     <script>
         // Dark mode functionality
         function setDarkMode(isDark) {
+            document.documentElement.classList.add('transition');
             if (isDark) {
                 document.documentElement.classList.add('dark');
                 localStorage.theme = 'dark';
@@ -970,7 +1023,129 @@
                 localStorage.theme = 'light';
             }
             updateThemeToggleIcons();
+            
+            // Remove transition class after animation completes
+            setTimeout(() => {
+                document.documentElement.classList.remove('transition');
+            }, 750);
         }
+        
+        // Image loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image loading animation
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.classList.add('image-fade-in');
+                img.onload = () => img.classList.add('loaded');
+            });
+
+            // Carousel functionality
+            const carousel = document.getElementById('image-carousel');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const indicators = document.getElementById('carousel-indicators');
+            const prevButton = document.getElementById('carousel-prev');
+            const nextButton = document.getElementById('carousel-next');
+            const pauseButton = document.getElementById('carousel-pause');
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+            
+            let currentSlide = 0;
+            let isPlaying = true;
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            // Create indicators
+            items.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('w-3', 'h-3', 'rounded-full', 'bg-white/50', 'hover:bg-white', 'transition-colors', 'duration-300');
+                dot.setAttribute('aria-label', `Slide ${index + 1}`);
+                dot.addEventListener('click', () => goToSlide(index));
+                indicators.appendChild(dot);
+            });
+            
+            function updateSlide() {
+                items.forEach((item, index) => {
+                    item.style.display = index === currentSlide ? 'block' : 'none';
+                });
+                
+                const dots = indicators.children;
+                Array.from(dots).forEach((dot, index) => {
+                    dot.classList.toggle('bg-white', index === currentSlide);
+                    dot.classList.toggle('bg-white/50', index !== currentSlide);
+                });
+            }
+            
+            function goToSlide(index) {
+                currentSlide = (index + items.length) % items.length;
+                updateSlide();
+            }
+            
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+            
+            // Auto-play functionality
+            let autoplayInterval;
+            
+            function startAutoplay() {
+                if (!autoplayInterval) {
+                    autoplayInterval = setInterval(nextSlide, 5000);
+                    isPlaying = true;
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                }
+            }
+            
+            function stopAutoplay() {
+                if (autoplayInterval) {
+                    clearInterval(autoplayInterval);
+                    autoplayInterval = null;
+                    isPlaying = false;
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                }
+            }
+            
+            // Touch events
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            });
+            
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                if (touchStartX - touchEndX > 50) {
+                    nextSlide();
+                } else if (touchEndX - touchStartX > 50) {
+                    prevSlide();
+                }
+            });
+            
+            // Event listeners
+            prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+            pauseButton.addEventListener('click', () => {
+                if (isPlaying) {
+                    stopAutoplay();
+                } else {
+                    startAutoplay();
+                }
+            });
+            
+            // Pause on hover
+            carousel.addEventListener('mouseenter', stopAutoplay);
+            carousel.addEventListener('mouseleave', () => {
+                if (!isPlaying) return;
+                startAutoplay();
+            });
+            
+            // Initialize
+            updateSlide();
+            startAutoplay();
+        });
 
         function updateThemeToggleIcons() {
             const darkIcon = document.getElementById('theme-toggle-dark-icon');
